@@ -1,5 +1,5 @@
 
-package com.github.shinesolutions.healthcheck.hc.impl;
+package com.shinesolutions.healthcheck.hc.impl;
 
 import java.util.Date;
 import org.apache.sling.hc.annotations.SlingHealthCheck;

@@ -1,5 +1,5 @@
 
-package com.github.shinesolutions.healthcheck.hc.impl;
+package com.shinesolutions.healthcheck.hc.impl;
 
 import junit.framework.Assert;
 import org.apache.sling.hc.api.HealthCheck;

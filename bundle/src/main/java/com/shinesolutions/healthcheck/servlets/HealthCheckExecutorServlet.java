@@ -1,5 +1,5 @@
 
-package com.github.shinesolutions.healthcheck.servlets;
+package com.shinesolutions.healthcheck.servlets;
 
 import java.io.IOException;
 import java.util.List;
