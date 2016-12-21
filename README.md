@@ -38,6 +38,35 @@ From the root directory, run ``mvn -PautoInstallPackage clean install`` to build
 
 From the bundle directory, run ``mvn -PautoInstallBundle clean install`` to build *just* the bundle and install to a CQ instance.
 
+## Release
+
+Create a release branch off the `master` branch
+```
+git branch release/X.X
+```
+
+Prepare the release (use vX.X for the tag)
+```
+mvn release:prepare
+```
+
+Push the branch to the repository
+```
+git push origin
+```
+
+Checkout the newly created tag and build the project
+```
+git checkout tags/vX.X
+```
+
+```
+mvn clean package
+```
+
+Attach the CRX package to the release on Github and merge back to `master`.
+
+
 ## Specifying CRX Host/Port
 
 The CRX host and port can be specified on the command line with:
