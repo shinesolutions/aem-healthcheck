@@ -1,1 +1,5 @@
 language: java
+install:
+  - cd bundle && mvn dependency:resolve
+script:
+  - mvn clean package

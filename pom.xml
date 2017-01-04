@@ -12,11 +12,38 @@
 
     <name>AEM HealthCheck - Reactor Project</name>
     <description>Maven Multimodule project for AEM HealthCheck</description>
+    <url>https://github.com/shinesolutions/aem-healthcheck</url>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/shinesolutions/aem-healthcheck.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <connection>scm:git:git@github.com:shinesolutions/aem-healthcheck.git</connection>
+        <developerConnection>scm:git:git@github.com:shinesolutions/aem-healthcheck.git</developerConnection>
+        <url>https://github.com/shinesolutions/aem-healthcheck</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>sonatype-release</id>
+            <name>Sonatype Release</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+     </licenses>
+
+     <developers>
+         <developer>
+             <name>Shine Solutions</name>
+             <email>opensource@shinesolutions.com</email>
+             <organization>Shine Solutions</organization>
+             <organizationUrl>http://shinesolutions.com</organizationUrl>
+         </developer>
+     </developers>
 
     <prerequisites>
         <maven>3.0.2</maven>
@@ -262,11 +289,46 @@
                             *.impl
                         </excludePackageNames>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                              <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.5</version>
+                    <executions>
+                        <execution>
+                             <id>sign-artifacts</id>
+                             <phase>verify</phase>
+                             <goals>
+                                 <goal>sign</goal>
+                             </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
