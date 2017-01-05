@@ -1,5 +1,5 @@
 language: java
-install:
-  - cd bundle && mvn dependency:resolve
+jdk:
+  - oraclejdk8
 script:
   - mvn clean package
