@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Deactivate;
+import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -57,6 +58,7 @@ import org.slf4j.LoggerFactory;
     methods = {"GET"},
     paths = {"/system/health"}
 )
+@Property(name = "sling.auth.requirements", value = "-/system/health")
 public class HealthCheckExecutorServlet extends SlingSafeMethodsServlet {
 
     @Reference
