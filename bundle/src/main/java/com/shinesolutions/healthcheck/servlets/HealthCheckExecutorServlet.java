@@ -93,6 +93,7 @@ public class HealthCheckExecutorServlet extends SlingSafeMethodsServlet {
         // execute health checks
         HealthCheckExecutionOptions options = new HealthCheckExecutionOptions();
         options.setCombineTagsWithOr(Boolean.valueOf(combineTagsOr));
+        options.setForceInstantExecution(true);
         List<HealthCheckExecutionResult> results = healthCheckExecutor.execute(options, tags);
 
         // check results
