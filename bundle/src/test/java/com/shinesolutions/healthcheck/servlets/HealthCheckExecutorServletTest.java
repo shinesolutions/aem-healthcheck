@@ -92,14 +92,14 @@ public class HealthCheckExecutorServletTest {
     }
     
     /**
-     * /system/health?tags=devops
+     * /system/health?tags=shallow
      */
     @Test
     public void testSingleTagAndOneResult() throws Exception {
         List<HealthCheckExecutionResult> results = new ArrayList<>();
         results.add(new TestHealthCheckResult());
         
-        when(mockRequest.getParameter("tags")).thenReturn("devops");
+        when(mockRequest.getParameter("tags")).thenReturn("shallow");
         when(mockRequest.getParameter("combineTagsOr")).thenReturn(null);
         when(mockHCExecutor.execute(any(HealthCheckExecutionOptions.class), anyString())).thenReturn(results);
 
@@ -112,16 +112,16 @@ public class HealthCheckExecutorServletTest {
         verify(printWriter,    times(1)).write(stringResultCaptor.capture());
         
         Assert.assertEquals("Should combine with OR", true, optionsCaptor.getValue().isCombineTagsWithOr());
-        Assert.assertEquals("Should provide a single tag", Arrays.asList("devops"), stringTagsCaptor.getAllValues());
+        Assert.assertEquals("Should provide a single tag", Arrays.asList("shallow"), stringTagsCaptor.getAllValues());
         Assert.assertEquals("Should be JSON object with one result", "{\"results\":[{\"name\":\"\",\"status\":\"OK\",\"timeMs\":0}]}", stringResultCaptor.getValue());
     }
     
     /**
-     * /system/health?tags=devops,security
+     * /system/health?tags=shallow,security
      */
     @Test
     public void testMultipleTags() throws Exception {
-        when(mockRequest.getParameter("tags")).thenReturn("devops,security");
+        when(mockRequest.getParameter("tags")).thenReturn("shallow,security");
         when(mockRequest.getParameter("combineTagsOr")).thenReturn(null);
 
         servlet.doGet(mockRequest, mockResponse);
@@ -133,16 +133,16 @@ public class HealthCheckExecutorServletTest {
         verify(printWriter,    times(1)).write(stringResultCaptor.capture());
         
         Assert.assertEquals("Should combine with OR", true, optionsCaptor.getValue().isCombineTagsWithOr());
-        Assert.assertEquals("Should provide two tags", Arrays.asList("devops", "security"), stringTagsCaptor.getAllValues());
+        Assert.assertEquals("Should provide two tags", Arrays.asList("shallow", "security"), stringTagsCaptor.getAllValues());
         Assert.assertEquals("Should be blank JSON array", "{\"results\":[]}", stringResultCaptor.getValue());
     }
     
     /**
-     * /system/health?tags=devops&combineTagsOr=false
+     * /system/health?tags=shallow&combineTagsOr=false
      */
     @Test
     public void testCombineTagsOrIsFalse() throws Exception {        
-        when(mockRequest.getParameter("tags")).thenReturn("devops");
+        when(mockRequest.getParameter("tags")).thenReturn("shallow");
         when(mockRequest.getParameter("combineTagsOr")).thenReturn("false");
 
         servlet.doGet(mockRequest, mockResponse);
@@ -154,7 +154,7 @@ public class HealthCheckExecutorServletTest {
         verify(printWriter,    times(1)).write(stringResultCaptor.capture());
         
         Assert.assertEquals("Should not combine with OR", false, optionsCaptor.getValue().isCombineTagsWithOr());
-        Assert.assertEquals("Should provide a single tags", Arrays.asList("devops"), stringTagsCaptor.getAllValues());
+        Assert.assertEquals("Should provide a single tags", Arrays.asList("shallow"), stringTagsCaptor.getAllValues());
         Assert.assertEquals("Should be blank JSON array", "{\"results\":[]}", stringResultCaptor.getValue());
     }
     

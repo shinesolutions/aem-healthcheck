@@ -14,7 +14,7 @@ import org.apache.sling.hc.util.FormattingResultLog;
     name = "Smoke Health Check",
     mbeanName = "smokeHC",
     description = "This health check determines if an instance is ready to serve requests",
-    tags = {"devops"}
+    tags = {"shallow", "devops"}
 )
 public class SmokeHealthCheck implements HealthCheck {
 
