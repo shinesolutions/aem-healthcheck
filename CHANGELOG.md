@@ -1,4 +1,4 @@
-### 1.1.1
+### 1.3.1
 * Introduced `shallow` tag. #10
 * `devops` tag will be retired in a later version
 
