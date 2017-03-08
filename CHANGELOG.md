@@ -1,4 +1,4 @@
-### 1.2
+### 1.1.1
 * changed `devops` tag to `shallow` while keeping `devops` for backward compatibility
 
 ### 1.1
