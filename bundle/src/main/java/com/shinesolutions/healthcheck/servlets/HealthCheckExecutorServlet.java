@@ -30,9 +30,9 @@ import org.slf4j.LoggerFactory;
  *
  * Sample requests:
  * /system/health
- * /system/health?tags=devops
- * /system/health?tags=devops,security
- * /system/health?tags=devops,security&amp;combineTagsOr=false
+ * /system/health?tags=shallow
+ * /system/health?tags=shallow,security
+ * /system/health?tags=shallow,security&amp;combineTagsOr=false
  *
  * Sample response:
  * {

@@ -1,3 +1,7 @@
+### 1.1.1
+* Introduced `shallow` tag. #10
+* `devops` tag will be retired in a later version
+
 ### 1.1
 * changed `groupId` to `com.shinesolutions`
 

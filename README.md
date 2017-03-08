@@ -9,9 +9,9 @@ For the full list of provided health checks in AEM, go to [http://localhost:4502
 
 Sample requests:
  * http://host:port/system/health
- * http://host:port/system/health?tags=devops
- * http://host:port/system/health?tags=devops,security
- * http://host:port/system/health?tags=devops,security&combineTagsOr=false
+ * http://host:port/system/health?tags=shallow
+ * http://host:port/system/health?tags=shallow,security
+ * http://host:port/system/health?tags=shallow,security&combineTagsOr=false
 
 Sample response:
 ```
