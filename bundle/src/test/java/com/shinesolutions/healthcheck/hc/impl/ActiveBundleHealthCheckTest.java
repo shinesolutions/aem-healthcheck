@@ -66,7 +66,7 @@ public class ActiveBundleHealthCheckTest {
         when(bundle1.getHeaders().get("Fragment-Host")).thenReturn("True");
         Result result = healthCheck.execute();
         assertEquals("Status should be Ok", Result.Status.OK, result.getStatus());
-        String msg = "There are no inactive Bundles";
+        String msg = "All bundles are considered active";
         assertTrue("Message should say there are no inactive bundles", result.toString().contains(msg));
     }
 
@@ -82,7 +82,7 @@ public class ActiveBundleHealthCheckTest {
     public void testExecute() {
         Result result = healthCheck.execute();
 
-        String resultLog = "ResultLog: [INFO There are a total of 2 active Bundles., INFO There are no inactive Bundles]";
+        String resultLog = "ResultLog: [INFO All bundles are considered active]";
         assertEquals("Result [status=" + Result.Status.OK + ", resultLog=" + resultLog + "]", result.toString());
 
         assertEquals("Status should be OK", Result.Status.OK, result.getStatus());

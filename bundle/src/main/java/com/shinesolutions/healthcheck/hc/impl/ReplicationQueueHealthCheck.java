@@ -15,41 +15,44 @@ import java.util.Map;
  * Health Check to test the replication queue status and validity.
  */
 @SlingHealthCheck(
-        name="Replication Queue Health Check",
-        mbeanName="replicationQueueHC",
-        description="This health check checks the replication queue for any disabled or invalid agent.",
-        tags={"deep"}
+        name = "Replication Queue Health Check",
+        mbeanName = "replicationQueueHC",
+        description = "This health check checks the replication queue of agents.",
+        tags = {"deep"}
 )
 public class ReplicationQueueHealthCheck implements HealthCheck {
+
     @Reference
     private AgentManager agentManager;
 
+    private static final int MAX_REPLICATION_TRIES = 3;
+
+    @Override
     public Result execute() {
         FormattingResultLog resultLog = new FormattingResultLog();
+
+        if(agentManager.getAgents().isEmpty()) {
+            resultLog.info("No agents configured");
+        }
+
         for (Map.Entry<String, Agent> entry : agentManager.getAgents().entrySet()) {
             Agent agent = entry.getValue();
 
-            if(agent.isValid()) {
-
-                // TODO: Do we want to warn if a replication agent is not currently enabled?
-                if (agent.isEnabled()) {
-                    ReplicationQueue replicationQueue = agent.getQueue();
-
-                    // TODO: Do we want to consider the block an unhealthy status? or set up a blocked time frame for considering it healthy?
-                    // Returns the time when the next retry is performed if the queue is blocked or 0 otherwise.
-                    if(replicationQueue.getStatus().getNextRetryTime() != 0) resultLog.info("Replication queue {} is blocked.", replicationQueue.getName());
-
-                    // Returns an unmodifiable list of all entries in this queue.
-                    if(replicationQueue.entries().isEmpty()) resultLog.debug("Replication queue {} is empty.", replicationQueue.getName());
-
+            // only perform check against valid/enabled agent
+            if(agent.isValid() && agent.isEnabled()) {
+                ReplicationQueue replicationQueue = agent.getQueue();
+                if(!replicationQueue.entries().isEmpty()) {
+                    ReplicationQueue.Entry firstEntry = replicationQueue.entries().get(0);
+                    if(firstEntry.getNumProcessed() > MAX_REPLICATION_TRIES) {
+                        resultLog.warn("Agent [{}] number of retries: {}, expected number of retries <= {}", agent.getId(), firstEntry.getNumProcessed(), MAX_REPLICATION_TRIES);
+                    }
                 } else {
-                    resultLog.warn("Agent {} is disabled.", agent.getId());
+                    resultLog.debug("Agent [{}] replication queue {} is empty.", replicationQueue.getName());
                 }
             } else {
-                resultLog.warn("Agent {} is not valid.", agent.getId());
+                resultLog.debug("Agent [{}] is not valid and/or not enabled.");
             }
         }
-
         return new Result(resultLog);
     }
 }

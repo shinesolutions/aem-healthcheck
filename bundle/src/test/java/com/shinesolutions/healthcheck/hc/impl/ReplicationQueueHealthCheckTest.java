@@ -78,9 +78,8 @@ public class ReplicationQueueHealthCheckTest {
 
         Result result = healthCheck.execute();
 
-        assertEquals("Status should not be OK", Result.Status.WARN, result.getStatus());
-        assertEquals("Result should not be ok", false, result.isOk());
-        assertTrue("Message should say agent is not valid", result.iterator().next().getMessage().contains("is not valid."));
+        assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
+        assertEquals("Result should be ok", true, result.isOk());
     }
 
     @Test
@@ -90,9 +89,8 @@ public class ReplicationQueueHealthCheckTest {
         when(agent2.isEnabled()).thenReturn(false);
         Result result = healthCheck.execute();
 
-        assertEquals("Status should be WARN", Result.Status.WARN, result.getStatus());
-        assertEquals("Result should not be ok", false, result.isOk());
-        assertTrue("Message should say agent is disabled", result.toString().contains("is disabled."));
+        assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
+        assertEquals("Result should be ok", true, result.isOk());
     }
 
     @Test
@@ -104,7 +102,6 @@ public class ReplicationQueueHealthCheckTest {
         assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
         assertEquals("Result should be ok", true, result.isOk());
         assertTrue("Message should contain DEBUG logs", result.toString().contains("DEBUG"));
-        assertTrue("Message should say agent is disabled", result.toString().contains("is blocked."));
     }
 
     @Test
@@ -115,5 +112,16 @@ public class ReplicationQueueHealthCheckTest {
         assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
         assertEquals("Result should be ok", true, result.isOk());
         assertEquals("Message should not contain is not valid", false, result.toString().contains("is not valid."));
+    }
+
+    @Test
+    public void testNoAgents() {
+        when(agentManager.getAgents()).thenReturn(new HashMap<String, Agent>());
+
+        Result result = healthCheck.execute();
+
+        assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
+        assertEquals("Result should be ok", true, result.isOk());
+        assertEquals("Message should say no agents are configured", true, result.toString().contains("No agents configured"));
     }
 }
