@@ -21,7 +21,12 @@ import org.osgi.service.component.ComponentContext;
         tags = {"deep"}
 )
 public class ActiveBundleHealthCheck implements HealthCheck {
+
     private BundleContext bundleContext;
+
+    private static final String BUNDLE_FRAGMENT_HOST     = "Fragment-Host";
+    private static final String BUNDLE_ACTIVATION_POLICY = "Bundle-ActivationPolicy";
+    private static final String LAZY_ACTIVATION_POLICY   = "lazy";
 
     @Activate
     protected void activate(ComponentContext context) {
@@ -37,33 +42,37 @@ public class ActiveBundleHealthCheck implements HealthCheck {
     public Result execute() {
         FormattingResultLog resultLog = new FormattingResultLog();
         int inactiveBundles = 0;
-        int activeBundles = 0;
         Bundle[] bundles = bundleContext.getBundles();
 
-        // TODO: Do we want the bundle HC to be unhealthy if any bundle is not active?
         for (Bundle bundle : bundles) {
             if (!isActiveBundle(bundle)) {
-                ++inactiveBundles;
+                inactiveBundles++;
                 resultLog.warn("Bundle {} is not active. It is in state {}.", bundle.getSymbolicName(), bundle.getState());
-            } else {
-                ++activeBundles;
             }
         }
 
-        resultLog.info("There are a total of {} active Bundles.", activeBundles);
-
-        if (inactiveBundles == 0) resultLog.info("There are no inactive Bundles");
+        if (inactiveBundles > 0) {
+            resultLog.warn("There are {} inactive Bundles", inactiveBundles);
+        } else {
+            resultLog.info("All bundles are considered active");
+        }
 
         return new Result(resultLog);
     }
 
     /**
-     * Checks if bundle is currently active, fragmented, or if it's activation is lazy; all of which count towards the active state
+     * Checks whether the provided bundle is active. A bundle is considered active if it meets the following criteria:
+     * - the bundle is active, or
+     * - it is a fragment bundle, or
+     * - it has a lazy activation policy
+     *
+     * @param bundle
+     * @return
      */
     private static boolean isActiveBundle(Bundle bundle) {
         return (bundle.getState() == Bundle.ACTIVE ||
-        bundle.getHeaders().get("Fragment-Host") != null) ||
-                (bundle.getHeaders().get("Bundle-ActivationPolicy") != null &&
-                bundle.getHeaders().get("Bundle-ActivationPolicy").equals("lazy"));
+        bundle.getHeaders().get(BUNDLE_FRAGMENT_HOST) != null) ||
+                (bundle.getHeaders().get(BUNDLE_ACTIVATION_POLICY) != null &&
+                bundle.getHeaders().get(BUNDLE_ACTIVATION_POLICY).equals(LAZY_ACTIVATION_POLICY));
     }
 }

@@ -83,6 +83,17 @@ public class SlingJobsHealthCheckTest {
     }
 
     @Test
+    public void testQueuedJobsExceedThreshold() {
+        long queuedJobs = 1200;
+        when(statistics.getNumberOfQueuedJobs()).thenReturn(queuedJobs);
+        Result result = healthCheck.execute();
+        String msg = "Found 1200 queued jobs.";
+        assertTrue("Message should say it found queued jobs", result.toString().contains(msg));
+        assertEquals("Result should not be ok", false, result.isOk());
+        assertEquals("Status should not be OK", Result.Status.WARN, result.getStatus());
+    }
+
+    @Test
     public void testNoActiveJobs() {
         long activeJobs = 0;
         when(statistics.getNumberOfActiveJobs()).thenReturn(activeJobs);
@@ -175,7 +186,7 @@ public class SlingJobsHealthCheckTest {
     @Test
     public void testExecute() {
         Result result = healthCheck.execute();
-        assertEquals("Status should not be OK", Result.Status.WARN, result.getStatus());
-        assertEquals("Result should not be ok", false, result.isOk());
+        assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
+        assertEquals("Result should be ok", true, result.isOk());
     }
 }

@@ -2,6 +2,7 @@ package com.shinesolutions.healthcheck.hc.impl;
 
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.sling.event.jobs.JobManager;
+import org.apache.sling.event.jobs.Queue;
 import org.apache.sling.event.jobs.Statistics;
 import org.apache.sling.hc.annotations.SlingHealthCheck;
 import org.apache.sling.hc.api.HealthCheck;
@@ -19,54 +20,65 @@ import org.apache.sling.hc.util.FormattingResultLog;
         tags = {"deep"}
 )
 public class SlingJobsHealthCheck implements HealthCheck {
+
     @Reference
     private JobManager jobManager;
+
+    private static final int MAX_JOBS_QUEUED = 1000;
 
     @Override
     public Result execute() {
         FormattingResultLog resultLog = new FormattingResultLog();
 
         if(jobManager != null) {
-
-            // TODO: do we want the HC to be unhealthy when there is no queues?
             // Get current queues in job manager
-            Iterable<org.apache.sling.event.jobs.Queue> queues = jobManager.getQueues();
+            Iterable<Queue> queues = jobManager.getQueues();
             if(queues != null) {
-                for (org.apache.sling.event.jobs.Queue queue : queues) {
+                for (Queue queue : queues) {
                     String name = queue.getName();
                     String info = queue.getStateInfo();
                     resultLog.info("The queue {} is currently {}", name, info);
                 }
-            } else resultLog.debug("There are currently no queues available.");
+            } else {
+                resultLog.info("There are currently no queues available.");
+            }
 
             // Get general statistics for the Job Manager
             Statistics statistics = jobManager.getStatistics();
 
             long totalJobs = statistics.getNumberOfJobs();
-            if (totalJobs > 0) resultLog.info("Found {} total jobs.", totalJobs); else resultLog.debug("Found no jobs in the Job Manager.");
+            if (totalJobs > 0)
+                resultLog.info("Found {} total jobs.", totalJobs); else resultLog.debug("Found no jobs in the Job Manager.");
 
             long queuedJobs = statistics.getNumberOfQueuedJobs();
-            if(queuedJobs > 0) resultLog.info("Found {} queued jobs.", queuedJobs); else resultLog.debug("Found no queued jobs.");
+            if(queuedJobs > 0)
+                resultLog.info("Found {} queued jobs.", queuedJobs); else resultLog.debug("Found no queued jobs.");
 
             long activeJobs = statistics.getNumberOfActiveJobs();
-            if(activeJobs > 0) resultLog.info("Found {} active jobs.", activeJobs); else resultLog.debug("Found no active jobs.");
+            if(activeJobs > 0)
+                resultLog.info("Found {} active jobs.", activeJobs); else resultLog.debug("Found no active jobs.");
 
-            // TODO: do we want the HC to be unhealthy is there are cancelled jobs?
             long cancelledJobs = statistics.getNumberOfCancelledJobs();
-            if(cancelledJobs > 0) resultLog.warn("Found {} cancelled jobs.", cancelledJobs); else resultLog.debug("Found no cancelled jobs.");
+            if(cancelledJobs > 0)
+                resultLog.info("Found {} cancelled jobs.", cancelledJobs); else resultLog.debug("Found no cancelled jobs.");
 
-            // TODO: do we want the HC to be unhealthy is there are failed jobs?
             long failedJobs = statistics.getNumberOfFailedJobs();
-            if(failedJobs > 0) resultLog.warn("Found {} failed jobs.", failedJobs); else resultLog.debug("Found no failed jobs.");
+            if(failedJobs > 0)
+                resultLog.info("Found {} failed jobs.", failedJobs); else resultLog.debug("Found no failed jobs.");
 
             long averageProcessingTime = statistics.getAverageProcessingTime();
-            if(averageProcessingTime > 0) resultLog.debug("The average processing time is {}.", averageProcessingTime);
+            if(averageProcessingTime > 0)
+                resultLog.debug("The average processing time is {}.", averageProcessingTime);
 
             long averageWaitingTime = statistics.getAverageWaitingTime();
-            if(averageWaitingTime > 0) resultLog.debug("The average waiting time is [{}.", averageWaitingTime);
+            if(averageWaitingTime > 0)
+                resultLog.debug("The average waiting time is [{}.", averageWaitingTime);
 
+            if(queuedJobs > MAX_JOBS_QUEUED) {
+                resultLog.warn("Found more than {} jobs queued: {}", MAX_JOBS_QUEUED, queuedJobs);
+            }
         } else {
-            resultLog.warn("No Job Manager available.");
+            resultLog.info("No Job Manager available");
         }
         return new Result(resultLog);
     }
