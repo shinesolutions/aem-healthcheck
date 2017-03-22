@@ -116,7 +116,7 @@ Besides the out-of-the-box tags, two new tags have been incorporated to the heal
 
 |       Tag       | Health Checks    | Description |
 |:---------------:|------------------|-------------|
-| Shallow, Devops | SmokeHealthCheck | This tag runs a simple Smoke health check that determines if an instance is ready to serve the requests.                                                                                                                                                                                                                                          |
+| Shallow, Devops | SmokeHealthCheck | This tag runs a simple Smoke health check that determines if an instance is running.                                                                                                                                                                                                                                          |
 |   Deep          | <ul><li>ActiveBundleHealthCheck</li><li>ReplicationQueueHealthCheck</li><li>SlingJobsHealthCheck</li></ul> | This tag runs three different health checks.<ul><li>The first health check scans the current OSGi bundles and reports if there is any inactive bundles.</li><li>The second health check verifies the replication queue of agents.</li><li>The third health check tests the number of active jobs and their general health in the queue.</li></ul> |
 
 ### Out-of-the-box tags
