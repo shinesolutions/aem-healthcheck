@@ -9,17 +9,21 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.component.ComponentContext;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ActiveBundleHealthCheckTest {
     @Mock
     private BundleContext bundleContext;
+
+    @Mock
+    private ComponentContext componentContext;
 
     @InjectMocks
     private HealthCheck healthCheck = new ActiveBundleHealthCheck();
@@ -32,6 +36,9 @@ public class ActiveBundleHealthCheckTest {
 
 
     private Bundle[] bundles = new Bundle[] { bundle1, bundle2 };
+    private String SYMBOLIC_NAME = "com.day.cq.dam.dam-webdav-support";
+    private String[] ignoredBundles = new String[]{SYMBOLIC_NAME};
+
 
     @Before
     public void init() throws Exception {
@@ -79,6 +86,28 @@ public class ActiveBundleHealthCheckTest {
     }
 
     @Test
+    public void testIgnoredBundles() {
+        ActiveBundleHealthCheck abhc = spy(activeBundleHealthCheck());
+
+        when(componentContext.getProperties()).thenReturn(new Hashtable(){{
+            put(ActiveBundleHealthCheck.IGNORED_BUNDLES, ignoredBundles);
+        }});
+
+        when(componentContext.getBundleContext()).thenReturn(bundleContext);
+
+        when(bundle1.getState()).thenReturn(Bundle.RESOLVED);
+        when(bundle1.getSymbolicName()).thenReturn(SYMBOLIC_NAME);
+
+        abhc.activate(componentContext);
+
+        Result result = abhc.execute();
+        assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
+        String msg = "The following bundles will be ignored: [" + SYMBOLIC_NAME + "]";
+        assertTrue("Message should contain the ignored bundles", result.toString().contains(msg));
+
+    }
+
+    @Test
     public void testExecute() {
         Result result = healthCheck.execute();
 
@@ -88,5 +117,9 @@ public class ActiveBundleHealthCheckTest {
         assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
         assertEquals("Result should be ok", true, result.isOk());
 
+    }
+
+    private ActiveBundleHealthCheck activeBundleHealthCheck() {
+        return new ActiveBundleHealthCheck();
     }
 }

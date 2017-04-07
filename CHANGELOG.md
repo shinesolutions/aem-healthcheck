@@ -1,3 +1,6 @@
+### 1.3.3
+* Introduced bundle whitelist for ignoring bundles in the bundle health-check. #16
+
 ### 1.3.2
 * Introduced `deep` tag. #10
 
