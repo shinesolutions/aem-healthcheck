@@ -14,6 +14,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentContext;
 
 import java.util.Arrays;
+import java.util.Dictionary;
 
 /**
  * Health Check to test if all Bundles are active.
@@ -34,12 +35,19 @@ public class ActiveBundleHealthCheck implements HealthCheck {
 
     @Property(label = "Ignored Bundles", description = "The bundles that will be ignored in the Active Bundle Health-Check")
     protected static final String IGNORED_BUNDLES = "bundles.ignored";
-    protected static String[] ignoredBundles;
+    protected String[] ignoredBundles;
 
     @Activate
     protected void activate(ComponentContext context) {
         bundleContext = context.getBundleContext();
-        ignoredBundles = PropertiesUtil.toStringArray(context.getProperties().get(IGNORED_BUNDLES));
+        Dictionary<String, Object> properties = context.getProperties();
+
+        if(properties != null) {
+            ignoredBundles = PropertiesUtil.toStringArray(properties.get(IGNORED_BUNDLES));
+        } else {
+            ignoredBundles = new String[]{};
+        }
+
     }
 
     @Deactivate
@@ -79,7 +87,7 @@ public class ActiveBundleHealthCheck implements HealthCheck {
      * @param bundle
      * @return
      */
-    private static boolean isIgnoredBundle(Bundle bundle) {
+    private boolean isIgnoredBundle(Bundle bundle) {
         return (ignoredBundles != null &&
                 Arrays.asList(ignoredBundles).contains(bundle.getSymbolicName()));
     }
