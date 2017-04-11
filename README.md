@@ -72,7 +72,7 @@ This healthcheck can take an optional OSGi configuration file.
           jcr:primaryType="sling:OsgiConfig"
           bundles.ignored="[com.day.cq.dam.dam-webdav-support]"/>
 ```
-With this configuration, the `com.day.cq.dam.dam-webdav-support` bundle would be ignored in the `ActiveBudleHealthCheck`.
+With this configuration, the `com.day.cq.dam.dam-webdav-support` bundle would be ignored in the `ActiveBundleHealthCheck`.
 
 ## Building
 
