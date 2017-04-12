@@ -15,6 +15,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -105,6 +106,21 @@ public class ActiveBundleHealthCheckTest {
         String msg = "The following bundles will be ignored: [" + SYMBOLIC_NAME + "]";
         assertTrue("Message should contain the ignored bundles", result.toString().contains(msg));
 
+    }
+
+    @Test
+    public void testEmptyIgnoredBundlesConfig() {
+        ActiveBundleHealthCheck abhc = spy(activeBundleHealthCheck());
+        when(componentContext.getProperties()).thenReturn(new Hashtable<>());
+
+        when(componentContext.getBundleContext()).thenReturn(bundleContext);
+
+        abhc.activate(componentContext);
+
+        Result result = abhc.execute();
+        assertEquals("Status should be OK", Result.Status.OK, result.getStatus());
+        String msg = "The following bundles will be ignored: [" + SYMBOLIC_NAME + "]";
+        assertFalse("Message should contain the ignored bundles", result.toString().contains(msg));
     }
 
     @Test

@@ -60,6 +60,20 @@ A `200` status code will be returned if ALL health checks return the status OK. 
 
 Note: It is assumed that all `/system/*` paths are only accessible from a local network and not routed to the Internet.
 
+## Ignored Bundles Configuration
+
+This healthcheck can take an optional OSGi configuration file.
+
+/apps/healthcheck/config/com.shinesolutions.healthcheck.hc.impl.ActiveBundleHealthCheck:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="sling:OsgiConfig"
+          bundles.ignored="[com.day.cq.dam.dam-webdav-support]"/>
+```
+With this configuration, the `com.day.cq.dam.dam-webdav-support` bundle would be ignored in the `ActiveBundleHealthCheck`.
+
 ## Building
 
 This project uses Maven for building. Common commands:
