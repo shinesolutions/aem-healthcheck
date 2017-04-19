@@ -116,6 +116,11 @@
                         <goals>
                             <goal>scr</goal>
                         </goals>
+                        <configuration>
+                            <properties>
+                                <service.vendor>Shine Solutions</service.vendor>
+                            </properties>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

@@ -18,8 +18,8 @@
         <connection>scm:git:git@github.com:shinesolutions/aem-healthcheck.git</connection>
         <developerConnection>scm:git:git@github.com:shinesolutions/aem-healthcheck.git</developerConnection>
         <url>https://github.com/shinesolutions/aem-healthcheck</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <repository>
@@ -36,6 +36,11 @@
             <distribution>repo</distribution>
         </license>
      </licenses>
+
+    <organization>
+        <name>Shine Solutions</name>
+        <url>http://www.shinesolutions.com/</url>
+    </organization>
 
      <developers>
          <developer>
@@ -64,6 +69,8 @@
         <publish.crx.password>admin</publish.crx.password>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
