@@ -1,3 +1,6 @@
+### 1.3.4
+* Specified vendor property for bundle and services
+
 ### 1.3.3
 * Introduced bundle whitelist for ignoring bundles in the bundle health-check. #16
 
