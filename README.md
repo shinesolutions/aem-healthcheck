@@ -74,6 +74,10 @@ This healthcheck can take an optional OSGi configuration file.
 ```
 With this configuration, the `com.day.cq.dam.dam-webdav-support` bundle would be ignored in the `ActiveBundleHealthCheck`.
 
+## Downloading
+
+Release artifacts are available for download via Maven Central at: http://central.maven.org/maven2/com/shinesolutions/aem-healthcheck-content/
+
 ## Building
 
 This project uses Maven for building. Common commands:
@@ -81,6 +85,12 @@ This project uses Maven for building. Common commands:
 From the root directory, run ``mvn -PautoInstallPackage clean install`` to build the bundle and content package and install to a CQ instance.
 
 From the bundle directory, run ``mvn -PautoInstallBundle clean install`` to build *just* the bundle and install to a CQ instance.
+
+## Installing
+
+- Navigate to the [CRX Package Manager](http://localhost:4502/crx/packmgr/index.jsp)
+- Upload the `aem-healthcheck-content-<version>.zip` package
+- Install the package
 
 ## Release
 
