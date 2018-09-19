@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/shinesolutions/aem-healthcheck.svg?branch=master)](https://travis-ci.org/shinesolutions/aem-healthcheck)
-[![Vulnerabilities Status](https://snyk.io/test/github/shinesolutions/aem-healthcheck/badge.svg)](https://snyk.io/test/github/shinesolutions/aem-healthcheck)
+[![Known Vulnerabilities](https://snyk.io/test/github/shinesolutions/aem-healthcheck/badge.svg)](https://snyk.io/test/github/shinesolutions/aem-healthcheck)
 
 # HealthCheck Servlet for AEM
 
