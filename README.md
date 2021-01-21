@@ -77,7 +77,7 @@ With this configuration, the `com.day.cq.dam.dam-webdav-support` bundle would be
 
 ## Downloading
 
-Release artifacts are available for download via Maven Central at: http://central.maven.org/maven2/com/shinesolutions/aem-healthcheck-content/
+Release artifacts are available for download via Maven Central at: https://repo1.maven.org/maven2/com/shinesolutions/aem-healthcheck-content/
 
 ## Building
 
