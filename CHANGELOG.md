@@ -1,3 +1,6 @@
+### Unreleased
+- Simplify GitHub Actions release workflows to not use custom action
+
 ### 1.3.4
 * Specified vendor property for bundle and services
 
