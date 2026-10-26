@@ -1,0 +1,24 @@
+---
+name: Publish to Maven Central
+'on':
+  push:
+    tags:
+      - 'aem-healthcheck-*'
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-26.04
+    container:
+      image: shinesolutions/aem-platform-buildenv:6.4.1
+      env:
+        # Java 11, as the project requires; aem-platform-buildenv defaults to Java 21
+        JAVA_HOME: /usr/lib/jvm/java-11
+    steps:
+      - uses: actions/checkout@v7
+      - env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.SHINEOPENSOURCE_MVNREPOSITORY_TOKEN_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.SHINEOPENSOURCE_MVNREPOSITORY_TOKEN_PASSWORD }}
+          MAVEN_GPG_KEY: ${{ secrets.SHINEOPENSOURCE_MAVEN_GPG_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.SHINEOPENSOURCE_MAVEN_GPG_PASSPHRASE }}
+        run: make publish

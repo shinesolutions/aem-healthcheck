@@ -3,7 +3,15 @@ name: CI
 on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./.github/actions/ci-action
+      - uses: actions/checkout@v7
+      - uses: cliffano/command-docker-action@v2.1.0
+        with:
+          command: |
+            mvn --version
+            make ci
+          image: shinesolutions/aem-platform-buildenv:6.4.1
+          shell: bash
+          # Java 11, as the project requires; aem-platform-buildenv defaults to Java 21
+          extra_args: -e JAVA_HOME=/usr/lib/jvm/java-11
