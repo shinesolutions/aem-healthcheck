@@ -1,0 +1,30 @@
+{
+  "tagFormat": "aem-healthcheck-{version}",
+  "resources": [
+    {
+      "path": "pom.xml",
+      "type": "text",
+      "params": {
+        "regex": "(?<=<artifactId>aem-healthcheck</artifactId>\\s*<version>)[^<]+"
+      }
+    },
+    {
+      "path": "bundle/pom.xml",
+      "type": "text",
+      "params": {
+        "regex": "(?<=<artifactId>aem-healthcheck</artifactId>\\s*<version>)[^<]+"
+      }
+    },
+    {
+      "path": "content/pom.xml",
+      "type": "text",
+      "params": {
+        "regex": "(?<=<artifactId>aem-healthcheck</artifactId>\\s*<version>)[^<]+"
+      }
+    },
+    {
+      "path": "CHANGELOG.md",
+      "type": "keep-a-changelog"
+    }
+  ]
+}
