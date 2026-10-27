@@ -7,7 +7,7 @@
 
     <groupId>com.shinesolutions</groupId>
     <artifactId>aem-healthcheck</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-pre.0</version>
     <packaging>pom</packaging>
 
     <name>AEM HealthCheck - Reactor Project</name>

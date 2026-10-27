@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial version
 
+## [Unreleased]
+
 ## [2.0.0] - 2026-10-27
 ### Added
 - Added Makefile targets for ci, clean, deps, build, install, release-test, publish, release-status, release-drop and release-major/minor/patch
@@ -56,7 +58,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#10]: https://github.com/shinesolutions/aem-healthcheck/issues/10
 [#16]: https://github.com/shinesolutions/aem-healthcheck/issues/16
 
-[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-undefined...HEAD
+[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
+[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
 [Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
 [2.0.0]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.4...aem-healthcheck-2.0.0
 [1.3.4]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.3...aem-healthcheck-1.3.4
