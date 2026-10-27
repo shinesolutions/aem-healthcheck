@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Changed `groupId` to `com.shinesolutions`
+
+## [Unreleased]
+### Added
+- Initial version
+
+## [2.0.0] - 2026-10-27
 ### Added
 - Added Makefile targets for ci, clean, deps, build, install, release-test, publish, release-status, release-drop and release-major/minor/patch
 - Added Maven Central credentials to `.mvn/settings.xml`, read from environment variables
@@ -45,21 +53,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 - `devops` tag will be retired in a later version
 
-## [1.1] - 2016-12-21
-### Changed
-- Changed `groupId` to `com.shinesolutions`
-
-## [1.0] - 2016-12-21
-### Added
-- Initial version
-
 [#10]: https://github.com/shinesolutions/aem-healthcheck/issues/10
 [#16]: https://github.com/shinesolutions/aem-healthcheck/issues/16
 
-[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/v1.3.4...HEAD
-[1.3.4]: https://github.com/shinesolutions/aem-healthcheck/compare/v1.3.3...v1.3.4
-[1.3.3]: https://github.com/shinesolutions/aem-healthcheck/compare/v1.3.2...v1.3.3
-[1.3.2]: https://github.com/shinesolutions/aem-healthcheck/compare/v1.3.1...v1.3.2
-[1.3.1]: https://github.com/shinesolutions/aem-healthcheck/compare/v1.1...v1.3.1
-[1.1]: https://github.com/shinesolutions/aem-healthcheck/compare/v1.0...v1.1
-[1.0]: https://github.com/shinesolutions/aem-healthcheck/releases/tag/v1.0
+[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-undefined...HEAD
+[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
+[2.0.0]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.4...aem-healthcheck-2.0.0
+[1.3.4]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.3...aem-healthcheck-1.3.4
+[1.3.3]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.2...aem-healthcheck-1.3.3
+[1.3.2]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.1...aem-healthcheck-1.3.2
+[1.3.1]: https://github.com/shinesolutions/aem-healthcheck/releases/tag/aem-healthcheck-1.3.1
