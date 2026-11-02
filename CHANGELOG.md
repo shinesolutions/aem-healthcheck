@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade release-action to 2.2.0
 - Use the RTK xml resource type for the pom.xml version
 
+### Removed
+- Remove the `make release-*` check for `## [Unreleased]` entries, as RTK 4.4.0 checks them
+
 ## [2.0.0] - 2026-10-27
 ### Added
 - Added Makefile targets for ci, clean, deps, build, install, release-test, publish, release-status, release-drop and release-major/minor/patch

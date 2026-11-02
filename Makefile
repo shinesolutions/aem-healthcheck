@@ -28,7 +28,8 @@ install:
 # in the pom.xml files and CHANGELOG.md (the `## [Unreleased]` entries are dated as the release) and
 # commits that, tags it aem-healthcheck-<version>, then commits the next pre-release version and a new
 # empty `## [Unreleased]` section. Nothing is pushed; review, then run `git push --follow-tags`.
-# Needs a clean working tree and entries under [Unreleased].
+# Needs a clean working tree and entries under [Unreleased], which rtk 4.4.0 or later checks before
+# changing anything.
 #   release-patch: 1.3.5-pre.0 -> 1.3.5, next 1.3.6-pre.0
 #   release-minor: 1.3.5-pre.0 -> 1.4.0, next 1.4.1-pre.0
 #   release-major: 1.3.5-pre.0 -> 2.0.0, next 2.0.1-pre.0
@@ -37,9 +38,6 @@ define release
 	export $(GIT_SAFE_DIRECTORY); \
 	git diff --quiet && git diff --cached --quiet \
 	  || { echo "Commit or stash your changes before releasing"; exit 1; }; \
-	awk '/^## \[Unreleased\]$$/ { found = 1; next } /^## / { found = 0 } found && /^- / { n++ } \
-	  END { exit n ? 0 : 1 }' CHANGELOG.md \
-	  || { echo "CHANGELOG.md has no entries under ## [Unreleased]"; exit 1; }; \
 	rtk release --release-increment-type $(1)
 endef
 
