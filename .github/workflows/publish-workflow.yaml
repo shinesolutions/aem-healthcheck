@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-26.04
     container:
-      image: shinesolutions/aem-platform-buildenv:6.4.1
+      image: shinesolutions/aem-platform-buildenv:6.5.0
       env:
         # Java 11, as the project requires; aem-platform-buildenv defaults to Java 21
         JAVA_HOME: /usr/lib/jvm/java-11

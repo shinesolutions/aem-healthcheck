@@ -64,7 +64,7 @@ release-patch:
 #   docker run --rm -v "$(pwd)":/workspace/aem-healthcheck:ro -w /workspace/aem-healthcheck \
 #     -e JAVA_HOME=/usr/lib/jvm/java-11 \
 #     -e MAVEN_GPG_KEY -e MAVEN_GPG_PASSPHRASE -e MAVEN_CENTRAL_USERNAME -e MAVEN_CENTRAL_PASSWORD \
-#     shinesolutions/aem-platform-buildenv:6.4.1 make release-test
+#     shinesolutions/aem-platform-buildenv:6.5.0 make release-test
 release-test:
 	@set -euo pipefail; \
 	work=$$(mktemp -d); trap 'rm -rf "$$work"' EXIT; \
