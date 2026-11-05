@@ -22,7 +22,7 @@ Learn more about AEM HealthCheck:
 ### Requirements
 
 This project requires Java 11 and Apache Maven. Run the `make` targets inside the
-`shinesolutions/aem-platform-buildenv:6.4.1` Docker image, which has Java 11, Maven and RTK, started
+`shinesolutions/aem-platform-buildenv:6.5.0` Docker image, which has Java 11, Maven and RTK, started
 from the directory above this repository. The image's default Java is 21, so this sets `JAVA_HOME`
 to its Java 11 in `/usr/lib/jvm/java-11`. It also passes the release variables through by name and
 your git identity for the release commits, and marks the mounted repository as safe for git (it is
@@ -35,7 +35,7 @@ $ docker run --rm -it -v "$(pwd)":/workspace -w /workspace/aem-healthcheck \
     -e GIT_CONFIG_VALUE_0=/workspace/aem-healthcheck \
     -e JAVA_HOME=/usr/lib/jvm/java-11 \
     -e MAVEN_GPG_KEY -e MAVEN_GPG_PASSPHRASE -e MAVEN_CENTRAL_USERNAME -e MAVEN_CENTRAL_PASSWORD \
-    shinesolutions/aem-platform-buildenv:6.4.1 bash
+    shinesolutions/aem-platform-buildenv:6.5.0 bash
 ```
 
 ### Download

@@ -3,23 +3,23 @@
   "resources": [
     {
       "path": "pom.xml",
-      "type": "text",
+      "type": "xml",
       "params": {
-        "regex": "(?<=<artifactId>aem-healthcheck</artifactId>\\s*<version>)[^<]+"
+        "property": "project.version"
       }
     },
     {
       "path": "bundle/pom.xml",
-      "type": "text",
+      "type": "xml",
       "params": {
-        "regex": "(?<=<artifactId>aem-healthcheck</artifactId>\\s*<version>)[^<]+"
+        "property": "project.parent.version"
       }
     },
     {
       "path": "content/pom.xml",
-      "type": "text",
+      "type": "xml",
       "params": {
-        "regex": "(?<=<artifactId>aem-healthcheck</artifactId>\\s*<version>)[^<]+"
+        "property": "project.parent.version"
       }
     },
     {

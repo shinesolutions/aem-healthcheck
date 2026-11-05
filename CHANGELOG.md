@@ -6,13 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Changed `groupId` to `com.shinesolutions`
-
-## [Unreleased]
-### Added
-- Initial version
-
-## [Unreleased]
+- Upgrade release-action to 2.2.0
+- Use the RTK xml resource type for the pom.xml version
+- Upgrade aem-platform-buildenv to 6.5.0, which has RTK 4.4.0
 
 ## [2.0.0] - 2026-10-27
 ### Added
@@ -55,14 +51,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 - `devops` tag will be retired in a later version
 
+## [1.1.0] - 2016-12-21
+### Changed
+- Changed `groupId` to `com.shinesolutions`
+
+## [1.0.0] - 2016-12-21
+### Added
+- Initial version
+
 [#10]: https://github.com/shinesolutions/aem-healthcheck/issues/10
 [#16]: https://github.com/shinesolutions/aem-healthcheck/issues/16
 
-[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
-[Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
 [Unreleased]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-2.0.0...HEAD
 [2.0.0]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.4...aem-healthcheck-2.0.0
 [1.3.4]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.3...aem-healthcheck-1.3.4
 [1.3.3]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.2...aem-healthcheck-1.3.3
 [1.3.2]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.3.1...aem-healthcheck-1.3.2
-[1.3.1]: https://github.com/shinesolutions/aem-healthcheck/releases/tag/aem-healthcheck-1.3.1
+[1.3.1]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.1.0...aem-healthcheck-1.3.1
+[1.1.0]: https://github.com/shinesolutions/aem-healthcheck/compare/aem-healthcheck-1.0.0...aem-healthcheck-1.1.0
+[1.0.0]: https://github.com/shinesolutions/aem-healthcheck/releases/tag/aem-healthcheck-1.0.0

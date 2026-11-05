@@ -11,7 +11,7 @@ jobs:
           command: |
             mvn --version
             make ci
-          image: shinesolutions/aem-platform-buildenv:6.4.1
+          image: shinesolutions/aem-platform-buildenv:6.5.0
           shell: bash
           # Java 11, as the project requires; aem-platform-buildenv defaults to Java 21
           extra_args: -e JAVA_HOME=/usr/lib/jvm/java-11
