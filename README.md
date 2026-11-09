@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/shinesolutions/aem-healthcheck/workflows/CI/badge.svg)](https://github.com/shinesolutions/aem-healthcheck/actions?query=workflow%3ACI)
+[![Code Scanning Status](https://github.com/shinesolutions/aem-healthcheck/workflows/CodeQL/badge.svg)](https://github.com/shinesolutions/aem-healthcheck/actions?query=workflow%3ACodeQL)
 [![Known Vulnerabilities](https://snyk.io/test/github/shinesolutions/aem-healthcheck/badge.svg)](https://snyk.io/test/github/shinesolutions/aem-healthcheck)
 
 # HealthCheck Servlet for AEM
