@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade release-action to 2.2.0
 - Use the RTK xml resource type for the pom.xml version
 - Upgrade aem-platform-buildenv to 6.7.0, which has RTK 4.4.0
+- Upgrade commons-lang3 from 3.0.1 to 3.18.0 (CVE-2025-48924), the version AEM 6.5 SP25/SP26 ships
+- Upgrade junit from 4.11 to 4.13.2 (CVE-2020-15250)
+### Removed
+- Remove the unused commons-lang 2.x dependency, which is EOL with no fix for CVE-2025-48924
 
 ## [2.0.0] - 2026-10-27
 ### Added
