@@ -107,13 +107,9 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>2.5</version>
+                <!-- First release with the CVE-2025-48924 fix, and the version AEM 6.5 SP25/SP26 ships. A newer
+                     version would raise the bundle's Import-Package range above what AEM exports. -->
+                <version>3.18.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -149,7 +145,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.11</version>
+                <version>4.13.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
